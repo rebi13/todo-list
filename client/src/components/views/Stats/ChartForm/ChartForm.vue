@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="chartWrap">
     <LineChart></LineChart>
     <DonutChart></DonutChart>
   </div>
@@ -10,4 +10,6 @@ import LineChart from "@/components/views/Stats/ChartForm/LineChart/LineChart.vu
 import DonutChart from "@/components/views/Stats/ChartForm/DonutChart/DonutChart.vue";
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+@import "./ChartForm.scss";
+</style>
