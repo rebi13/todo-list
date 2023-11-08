@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <div id="donutChart"></div>
-  </div>
+  <div id="donutChart"></div>
 </template>
 
 <script setup lang="ts">
@@ -16,8 +14,8 @@ const data = [
   { country: "France", value: 2.8 },
 ];
 
-const width = 500;
-const height = 500;
+const width = 200;
+const height = 200;
 const radius = Math.min(width, height) / 2;
 
 onMounted(() => {
@@ -34,7 +32,7 @@ onMounted(() => {
   const pie = d3.pie<{ value: number }>().value((d) => d.value as number);
   // const pie = d3.pie().value((d: any) => d.value);
 
-  const arc = d3.arc().innerRadius(100).outerRadius(radius);
+  const arc = d3.arc().innerRadius(50).outerRadius(radius);
   const arcs = svg
     .selectAll("arc")
     .data(pie(data))
