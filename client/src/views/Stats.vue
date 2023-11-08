@@ -1,10 +1,7 @@
 <template>
-  <div>stats</div>
-  <LineChart></LineChart>
-  <DonutChart></DonutChart>
+  <ChartForm></ChartForm>
 </template>
 
 <script lang="ts" setup>
-import LineChart from "@/components/views/Stats/LineChart.vue";
-import DonutChart from "@/components/views/Stats/DonutChart.vue";
+import ChartForm from "@/components/views/Stats/ChartForm/ChartForm.vue";
 </script>
