@@ -1,7 +1,9 @@
 <template>
-  <SearchBox></SearchBox>
-  <AddButton></AddButton>
-  <TodoForm></TodoForm>
+  <div>
+    <SearchBox></SearchBox>
+    <AddButton></AddButton>
+    <TodoForm></TodoForm>
+  </div>
 </template>
 
 <script lang="ts" setup>
