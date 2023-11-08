@@ -1,11 +1,13 @@
 <template>
   <v-main class="wrap">
     <div class="container">
-      <h1>TODO List</h1>
-      <nav class="nav">
-        <router-link to="/">목록</router-link>
-        <router-link to="/stats">통계</router-link>
-      </nav>
+      <div class="commonTitle">
+        <h1>TODO List</h1>
+        <nav class="nav">
+          <router-link to="/">목록</router-link>
+          <router-link to="/stats">통계</router-link>
+        </nav>
+      </div>
       <router-view />
     </div>
   </v-main>
@@ -18,7 +20,7 @@
 <style lang="scss">
 .wrap {
   width: 100%;
-  max-width: 60rem !important;
+  max-width: 60rem; // !important;
   margin: 1rem auto;
 }
 
@@ -27,11 +29,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  > div {
+  width: 50rem;
+  /* > div {
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
+  } */
 }
 
 .nav {
@@ -44,5 +47,12 @@
   a {
     text-decoration: none;
   }
+}
+
+.commonTitle {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 </style>
