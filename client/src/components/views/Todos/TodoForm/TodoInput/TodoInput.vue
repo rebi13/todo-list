@@ -1,5 +1,9 @@
 <template>
-  <v-text-field :label="label" variant="underlined"></v-text-field>
+  <v-text-field
+    class="textField"
+    :label="label"
+    variant="underlined"
+  ></v-text-field>
 </template>
 
 <script lang="ts" setup>
@@ -12,3 +16,7 @@ const props = defineProps({
   },
 });
 </script>
+
+<style lang="scss">
+@import "./TodoInput.scss";
+</style>
