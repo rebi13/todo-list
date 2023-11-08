@@ -1,18 +1,14 @@
 <template>
-  <div>
-    <div>linechart area</div>
-    <apexchart
-      type="line"
-      height="350"
-      :options="chartOptions"
-      :series="series"
-    ></apexchart>
-  </div>
+  <apexchart
+    type="line"
+    height="350"
+    :options="chartOptions"
+    :series="series"
+  ></apexchart>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
-// import ApexCharts from "vue3-apexcharts";
 
 const series = ref([
   {
