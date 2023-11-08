@@ -1,5 +1,5 @@
 <template>
-  <v-btn> {{ name }} </v-btn>
+  <v-btn :class="isAdd ? 'addButton' : 'cancleButton'"> {{ name }} </v-btn>
 </template>
 
 <script lang="ts" setup>
@@ -10,5 +10,12 @@ const props = defineProps({
     type: String,
     required: true,
   },
+  isAdd: {
+    type: Boolean,
+    required: true,
+  },
 });
 </script>
+<style lang="scss">
+@import "./Button.scss";
+</style>
