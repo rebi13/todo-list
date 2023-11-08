@@ -10,8 +10,4 @@ import LineChart from "@/components/views/Stats/ChartForm/LineChart/LineChart.vu
 import DonutChart from "@/components/views/Stats/ChartForm/DonutChart/DonutChart.vue";
 </script>
 
-<style lang="scss">
-div {
-  width: inherit;
-}
-</style>
+<style lang="scss"></style>
