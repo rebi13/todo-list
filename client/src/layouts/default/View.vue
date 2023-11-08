@@ -27,13 +27,21 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  > div {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+  }
 }
+
 .nav {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   width: 20rem;
   padding: 1rem;
+  margin-bottom: 5rem;
   a {
     text-decoration: none;
   }
