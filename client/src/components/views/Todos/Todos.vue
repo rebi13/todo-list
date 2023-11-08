@@ -1,5 +1,4 @@
 <template>
-  <div>todos component</div>
   <SearchBox></SearchBox>
   <AddButton></AddButton>
   <TodoForm></TodoForm>

@@ -1,5 +1,4 @@
 <template>
-  <div>todo</div>
   <TodosVue></TodosVue>
 </template>
 

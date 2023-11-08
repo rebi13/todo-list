@@ -1,10 +1,12 @@
 <template>
-  <TodoInput></TodoInput>
-  <TodoInput></TodoInput>
-  <TodoDatePicker></TodoDatePicker>
-  <TodoStatus></TodoStatus>
-  <Button name="추가"></Button>
-  <Button name="취소"></Button>
+  <div class="todoFormWrap">
+    <TodoInput></TodoInput>
+    <TodoInput></TodoInput>
+    <TodoDatePicker></TodoDatePicker>
+    <TodoStatus></TodoStatus>
+    <Button name="추가"></Button>
+    <Button name="취소"></Button>
+  </div>
 </template>
 
 <script lang="ts" setup>
@@ -13,3 +15,6 @@ import TodoInput from "./TodoInput/TodoInput.vue";
 import TodoStatus from "./TodoStatus/TodoStatus.vue";
 import Button from "@/components/common/Button/Button.vue";
 </script>
+<style lang="scss">
+@import "./TodoForm.scss";
+</style>
