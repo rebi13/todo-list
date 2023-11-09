@@ -15,9 +15,13 @@ const props = defineProps({
     type: String,
     required: true,
   },
+  initialData: {
+    type: String,
+    required: true,
+  },
 });
 
-const inputData = ref("진행전");
+const inputData = ref(props.initialData || "진행전");
 const emit = defineEmits(["input-changed"]);
 
 const sendDataToParent = () => {
