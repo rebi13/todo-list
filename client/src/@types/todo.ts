@@ -4,4 +4,5 @@ export interface todo {
   content: string;
   createDate: string;
   status: string;
+  isEditMode: boolean;
 }
