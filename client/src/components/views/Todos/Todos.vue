@@ -2,8 +2,8 @@
   <div class="todoContent">
     <SearchBox></SearchBox>
     <AddButton></AddButton>
-    <TodoCard v-for="item in todoList" :todo="item"></TodoCard>
     <TodoForm :handleTaskComplete="handleTaskComplete!"></TodoForm>
+    <TodoCard v-for="item in todoList" :todo="item"></TodoCard>
   </div>
 </template>
 
