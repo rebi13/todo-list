@@ -18,11 +18,12 @@ import "@vuepic/vue-datepicker/dist/main.css";
 
 // Plugins
 import { registerPlugins } from "@/plugins";
+import store from "@/store/index";
 
 const app = createApp(App);
 app.component("VueDatePicker", VueDatePicker);
 app.use(VueApexCharts);
-
+app.use(store);
 // [axios / http 통신]
 app.config.globalProperties.$axios = axios;
 
