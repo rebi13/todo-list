@@ -20,34 +20,75 @@
         @input-changed="handleInputChange"
       ></TodoStatus>
     </div>
-    <TodoButtonGroup></TodoButtonGroup>
+    <div class="buttonGroupWrap">
+      <Button :name="'추가'" :isAdd="true" @button-click="submitForm"></Button>
+      <Button :name="'취소'" :isAdd="false"></Button>
+    </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue";
-import TodoButtonGroup from "./TodoButtonGroup/TodoButtonGroup.vue";
+import { ref, defineProps } from "vue";
 import TodoInput from "./TodoInput/TodoInput.vue";
 import TodoDatePicker from "./TodoDatePicker/TodoDatePicker.vue";
 import TodoStatus from "./TodoStatus/TodoStatus.vue";
+import Button from "@/components/common/Button/Button.vue";
+import axiosRequest from "@/api";
 
-const titleInput = ref("");
-const contentInput = ref("");
+const props = defineProps({
+  handleTaskComplete: Function,
+});
+
+const title = ref("");
+const content = ref("");
+const createDate = ref("");
+const status = ref("");
+
+type InputChangeObjType = {
+  [key: string]: (input: string) => void;
+};
+
+const inputChangeObj: InputChangeObjType = {
+  title: (input: string) => {
+    title.value = input;
+  },
+  content: (input: string) => {
+    content.value = input;
+  },
+  date: (input: string) => {
+    createDate.value = input;
+  },
+  status: (input: string) => {
+    status.value = input;
+  },
+};
 
 const handleInputChange = (input: string, data: string) => {
-  switch (data) {
-    case "title":
-      titleInput.value = input;
-      break;
-    case "content":
-      contentInput.value = input;
-      break;
-    case "date":
-      break;
-    case "status":
-      break;
-  }
+  inputChangeObj[data](input);
   console.log(input, data);
+};
+
+const submitForm = async (data: boolean) => {
+  if (data) {
+    const todoData = {
+      title: title.value,
+      content: content.value,
+      createDate: createDate.value,
+      status: status.value,
+    };
+    const response = await axiosRequest.requestAxios<any>(
+      "post",
+      "/todos",
+      todoData
+    );
+    if (!response.error && props.handleTaskComplete) {
+      console.log("성공");
+      props.handleTaskComplete();
+    }
+    console.log(response);
+  }
+
+  return; // 창 닫기
 };
 </script>
 
