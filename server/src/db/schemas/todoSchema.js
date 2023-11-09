@@ -18,6 +18,11 @@ const todoSchema = new Schema(
       type: String,
       required: true,
     },
+    isEditMode: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
   },
   {
     timestamps: true,
