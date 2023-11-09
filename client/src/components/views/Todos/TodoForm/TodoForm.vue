@@ -3,25 +3,33 @@
     <TodoInput
       label="제목을 입력하세요."
       :data="'title'"
+      :initialData="title"
       @input-changed="handleInputChange"
     ></TodoInput>
     <TodoInput
       label="설명을 입력하세요."
       :data="'content'"
+      :initialData="content"
       @input-changed="handleInputChange"
     ></TodoInput>
     <div class="todoStatusGroupWrap">
       <TodoDatePicker
         :data="'date'"
+        :initialData="createDate"
         @input-changed="handleInputChange"
       ></TodoDatePicker>
       <TodoStatus
         :data="'status'"
+        :initialData="status"
         @input-changed="handleInputChange"
       ></TodoStatus>
     </div>
     <div class="buttonGroupWrap">
-      <Button :name="'추가'" :isAdd="true" @button-click="submitForm"></Button>
+      <Button
+        :name="_id.length ? '수정' : '추가'"
+        :isAdd="true"
+        @button-click="submitForm(true, _id)"
+      ></Button>
       <Button :name="'취소'" :isAdd="false" @button-click="cancelForm"></Button>
     </div>
   </div>
@@ -34,16 +42,28 @@ import TodoDatePicker from "./TodoDatePicker/TodoDatePicker.vue";
 import TodoStatus from "./TodoStatus/TodoStatus.vue";
 import Button from "@/components/common/Button/Button.vue";
 import axiosRequest from "@/api";
+import { res, todo } from "@/@types";
 
 const props = defineProps({
+  initialData: {
+    type: Object,
+    default: () => ({
+      _id: "",
+      title: "",
+      content: "",
+      createDate: "",
+      status: "",
+      isEditMode: false,
+    }),
+  },
   handleTaskComplete: Function,
 });
-
-const title = ref("");
-const content = ref("");
-const createDate = ref("");
-const status = ref("");
-
+const _id = ref(props.initialData._id);
+const title = ref(props.initialData.title);
+const content = ref(props.initialData.content);
+const createDate = ref(props.initialData.createDate);
+const status = ref(props.initialData.status);
+console.log(props.initialData);
 type InputChangeObjType = {
   [key: string]: (input: string) => void;
 };
@@ -68,7 +88,9 @@ const handleInputChange = (input: string, data: string) => {
   console.log(input, data);
 };
 
-const submitForm = async (data: boolean) => {
+const submitForm = async (data: boolean, id: string) => {
+  if (!checkValidation()) return;
+
   if (data) {
     const todoData = {
       title: title.value,
@@ -76,11 +98,13 @@ const submitForm = async (data: boolean) => {
       createDate: createDate.value,
       status: status.value,
     };
-    const response = await axiosRequest.requestAxios<any>(
-      "post",
-      "/todos",
-      todoData,
-    );
+    const response = id.length
+      ? await axiosRequest.requestAxios<res<todo>>(
+          "patch",
+          `/todos/${id}`,
+          todoData,
+        )
+      : await axiosRequest.requestAxios<res<todo>>("post", "/todos", todoData);
     if (!response.error && props.handleTaskComplete) {
       console.log("성공");
       props.handleTaskComplete();
@@ -89,6 +113,25 @@ const submitForm = async (data: boolean) => {
   }
   return; // 창 닫기
 };
+
+const checkValidation = () => {
+  console.log(title.value, content.value, createDate.value, status.value);
+  if (!title.value) {
+    alert("제목을 입력하세요.");
+    return false;
+  }
+  if (!content.value) {
+    alert("설명을 입력하세요.");
+    return false;
+  }
+  if (!createDate.value) {
+    alert("날짜를 선택하세요.");
+    return false;
+  }
+
+  return true;
+};
+
 const emit = defineEmits(["cancel-click"]);
 
 const cancelForm = (data: boolean) => {
