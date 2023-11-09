@@ -22,13 +22,13 @@
     </div>
     <div class="buttonGroupWrap">
       <Button :name="'추가'" :isAdd="true" @button-click="submitForm"></Button>
-      <Button :name="'취소'" :isAdd="false"></Button>
+      <Button :name="'취소'" :isAdd="false" @button-click="cancelForm"></Button>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { ref, defineProps } from "vue";
+import { ref, defineProps, defineEmits } from "vue";
 import TodoInput from "./TodoInput/TodoInput.vue";
 import TodoDatePicker from "./TodoDatePicker/TodoDatePicker.vue";
 import TodoStatus from "./TodoStatus/TodoStatus.vue";
@@ -79,7 +79,7 @@ const submitForm = async (data: boolean) => {
     const response = await axiosRequest.requestAxios<any>(
       "post",
       "/todos",
-      todoData
+      todoData,
     );
     if (!response.error && props.handleTaskComplete) {
       console.log("성공");
@@ -87,8 +87,14 @@ const submitForm = async (data: boolean) => {
     }
     console.log(response);
   }
-
   return; // 창 닫기
+};
+const emit = defineEmits(["cancel-click"]);
+
+const cancelForm = (data: boolean) => {
+  if (!data) {
+    emit("cancel-click");
+  }
 };
 </script>
 
