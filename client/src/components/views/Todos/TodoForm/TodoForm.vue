@@ -10,7 +10,16 @@
       :data="'content'"
       @input-changed="handleInputChange"
     ></TodoInput>
-    <TodoStatusGroup></TodoStatusGroup>
+    <div class="todoStatusGroupWrap">
+      <TodoDatePicker
+        :data="'date'"
+        @input-changed="handleInputChange"
+      ></TodoDatePicker>
+      <TodoStatus
+        :data="'status'"
+        @input-changed="handleInputChange"
+      ></TodoStatus>
+    </div>
     <TodoButtonGroup></TodoButtonGroup>
   </div>
 </template>
@@ -19,7 +28,8 @@
 import { ref } from "vue";
 import TodoButtonGroup from "./TodoButtonGroup/TodoButtonGroup.vue";
 import TodoInput from "./TodoInput/TodoInput.vue";
-import TodoStatusGroup from "./TodoStatusGroup/TodoStatusGroup.vue";
+import TodoDatePicker from "./TodoDatePicker/TodoDatePicker.vue";
+import TodoStatus from "./TodoStatus/TodoStatus.vue";
 
 const titleInput = ref("");
 const contentInput = ref("");
@@ -37,6 +47,7 @@ const handleInputChange = (input: string, data: string) => {
     case "status":
       break;
   }
+  console.log(input, data);
 };
 </script>
 
