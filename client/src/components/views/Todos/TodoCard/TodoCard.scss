@@ -1,0 +1,17 @@
+.todoCard {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  padding: 1.5rem;
+  margin-top: 1rem;
+  border-radius: 1rem;
+  background-color: #5ac3f6;
+}
+
+.todoInfo {
+  width: 70%;
+}
+
+.todoStatus {
+  width: 30%;
+}
