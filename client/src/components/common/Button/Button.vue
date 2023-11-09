@@ -1,5 +1,10 @@
 <template>
-  <v-btn :class="isAdd ? 'addButton' : 'cancleButton'"> {{ name }} </v-btn>
+  <v-btn
+    :class="isAdd ? 'addButton' : 'cancleButton'"
+    @click="sendDataToParent"
+  >
+    {{ name }}
+  </v-btn>
 </template>
 
 <script lang="ts" setup>
@@ -15,6 +20,12 @@ const props = defineProps({
     required: true,
   },
 });
+
+const emit = defineEmits(["button-click"]);
+
+const sendDataToParent = () => {
+  emit("button-click", props.isAdd);
+};
 </script>
 <style lang="scss">
 @import "./Button.scss";
