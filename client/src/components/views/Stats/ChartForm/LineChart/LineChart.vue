@@ -1,8 +1,8 @@
 <template>
   <apexchart
     type="line"
-    height="200"
-    width="200"
+    height="350"
+    width="600"
     :options="chartOptions"
     :series="series"
   ></apexchart>
@@ -47,3 +47,7 @@ const chartOptions = ref({
   },
 });
 </script>
+
+<style lang="scss">
+@import "./LineChart.scss";
+</style>

@@ -14,8 +14,8 @@ const data = [
   { country: "France", value: 2.8 },
 ];
 
-const width = 200;
-const height = 200;
+const width = 600;
+const height = 350;
 const radius = Math.min(width, height) / 2;
 
 onMounted(() => {
@@ -54,3 +54,7 @@ onMounted(() => {
     .text((d: any) => d.data.country);
 });
 </script>
+
+<style lang="scss">
+@import "./DonutChart.scss";
+</style>
