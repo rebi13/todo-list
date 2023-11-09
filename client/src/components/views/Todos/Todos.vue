@@ -3,7 +3,7 @@
     <SearchBox></SearchBox>
     <AddButton></AddButton>
     <TodoCard v-for="item in todoList" :todo="item"></TodoCard>
-    <TodoForm></TodoForm>
+    <TodoForm :handleTaskComplete="handleTaskComplete!"></TodoForm>
   </div>
 </template>
 
@@ -19,9 +19,18 @@ import axiosRequest from "@/api/index";
 const todoList = ref([]);
 
 onMounted(async () => {
+  await getTodos();
+});
+
+const getTodos = async () => {
   const response = await axiosRequest.requestAxios<any>("get", "/todos");
   todoList.value = response.data;
-});
+};
+
+const handleTaskComplete = async () => {
+  await getTodos();
+  console.log("재조회!");
+};
 </script>
 
 <style lang="scss">
