@@ -1,8 +1,8 @@
 <template>
   <div class="todoCard">
     <div class="todoInfo">
-      <h1>{{ todo.title }}</h1>
-      <div>{{ todo.content }}</div>
+      <h1 class="ellipsis">{{ todo.title }}</h1>
+      <div class="ellipsis">{{ todo.content }}</div>
     </div>
     <div class="todoStatus">
       <div>{{ todo.createDate }}</div>
@@ -18,22 +18,6 @@ const props = defineProps({
   todo: {
     type: Object,
     required: true,
-    // title: {
-    //   type: String,
-    //   required: true,
-    // },
-    // content: {
-    //   type: String,
-    //   required: true,
-    // },
-    // createDate: {
-    //   type: String,
-    //   required: true,
-    // },
-    // status: {
-    //   type: String,
-    //   required: true,
-    // },
   },
 });
 </script>
