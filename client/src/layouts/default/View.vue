@@ -29,7 +29,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 50rem;
+  width: 100%; // 50rem;
   /* > div {
     display: flex;
     flex-direction: column;
