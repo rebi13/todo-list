@@ -1,7 +1,6 @@
 <template>
   <div class="todoCard">
     <div class="todoInfo">
-      as
       <h1>{{ todo.title }}</h1>
       <div>{{ todo.content }}</div>
     </div>
