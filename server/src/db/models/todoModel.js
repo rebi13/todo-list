@@ -24,7 +24,8 @@ class TodoModel {
 
   // document 객체 전체를 찾아오는 메소드
   findTodos() {
-    return Todo.find().lean(); // lean을 사용하여 POJO 객체로 바꿔준다.
+    // 최신 날짜 기준으로 내림차순 정렬한다.
+    return Todo.find().sort({ createdAt: -1 }).lean(); // lean을 사용하여 POJO 객체로 바꿔준다.
   }
 
   // 특정 id를 _id로 갖는 document 객체를 찾아오는 메소드
