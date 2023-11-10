@@ -63,10 +63,9 @@ const title = ref(props.initialData.title);
 const content = ref(props.initialData.content);
 const createDate = ref(props.initialData.createDate);
 const status = ref(props.initialData.status);
-console.log(props.initialData);
-type InputChangeObjType = {
+interface InputChangeObjType {
   [key: string]: (input: string) => void;
-};
+}
 
 const inputChangeObj: InputChangeObjType = {
   title: (input: string) => {
@@ -106,10 +105,8 @@ const submitForm = async (data: boolean, id: string) => {
         )
       : await axiosRequest.requestAxios<res<todo>>("post", "/todos", todoData);
     if (!response.error && props.handleTaskComplete) {
-      console.log("성공");
       props.handleTaskComplete();
     }
-    console.log(response);
   }
   return; // 창 닫기
 };
