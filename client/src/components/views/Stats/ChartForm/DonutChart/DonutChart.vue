@@ -33,7 +33,12 @@ onMounted(() => {
   });
 
   // initial chart rendering
-  setDonutChart();
+  if (data.value.length > 0) {
+    setDonutChart();
+  } else {
+    let a: any = document.getElementById("donutChart");
+    a.innerHTML = "no data";
+  }
 });
 const chartColor: any = {
   진행전: "red",
