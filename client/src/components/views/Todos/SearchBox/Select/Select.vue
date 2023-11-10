@@ -8,9 +8,14 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue";
+import { computed } from "vue";
+import { useStore } from "vuex";
 
-const defaultItem = ref("제목");
+const store = useStore();
+const defaultItem = computed({
+  get: () => store.state.defaultItem,
+  set: (value) => store.commit("updateDefaultItem", value),
+});
 </script>
 
 <style lang="scss">

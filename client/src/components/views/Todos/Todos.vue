@@ -25,14 +25,17 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed } from "vue";
+import { useStore } from "vuex";
 
 import SearchBox from "./SearchBox/SearchBox.vue";
 import AddButton from "./AddButton/AddButton.vue";
 import TodoForm from "./TodoForm/TodoForm.vue";
 import TodoCard from "./TodoCard/TodoCard.vue";
-import axiosRequest from "@/api/index";
-import { res, todo } from "@/@types/index";
+import { todo } from "@/@types/index";
+
+const store = useStore();
+const todoList = computed(() => store.state.filteredTodos);
 
 const isShowTodoForm = ref(false);
 const todoFormData = ref({
@@ -58,23 +61,12 @@ const hideTodoForm = (item: todo | null) => {
   isShowTodoForm.value = false;
 };
 
-const todoList = ref<todo[]>([]);
-
 onMounted(async () => {
-  await getTodos();
+  await store.dispatch("fetchTodos");
 });
 
-const getTodos = async () => {
-  const response = await axiosRequest.requestAxios<res<todo[]>>(
-    "get",
-    "/todos",
-  );
-  todoList.value = response.data;
-};
-
 const handleTaskComplete = async () => {
-  await getTodos();
-  console.log("재조회!");
+  await store.dispatch("fetchTodos");
   hideTodoForm(null);
 };
 
