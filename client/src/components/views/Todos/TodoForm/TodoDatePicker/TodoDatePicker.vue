@@ -26,16 +26,11 @@ const inputData = ref(props.initialData);
 const emit = defineEmits(["input-changed"]);
 
 const sendDataToParent = () => {
-  emit("input-changed", inputData.value, props.data);
+  emit("input-changed", format(inputData.value.toString()), props.data);
 };
 
 const format = (date: string) => {
   return dayjs(date).format("YYYY-MM-DD");
-  // const day = date.getDate();
-  // const month = date.getMonth() + 1;
-  // const year = date.getFullYear();
-
-  // return `Selected date is ${day}/${month}/${year}`;
 };
 </script>
 
