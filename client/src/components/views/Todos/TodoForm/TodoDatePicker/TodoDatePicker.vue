@@ -1,6 +1,5 @@
 <template>
   <VueDatePicker
-    class="datePicker"
     v-model="inputData"
     :format="format"
     @blur="sendDataToParent"
