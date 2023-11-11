@@ -14,11 +14,13 @@
     ></TodoInput>
     <div class="todoStatusGroupWrap">
       <TodoDatePicker
+        class="datePicker"
         :data="'date'"
         :initialData="createDate"
         @input-changed="handleInputChange"
       ></TodoDatePicker>
       <TodoStatus
+        class="statusPicker"
         :data="'status'"
         :initialData="status"
         @input-changed="handleInputChange"
@@ -101,7 +103,7 @@ const submitForm = async (data: boolean, id: string) => {
       ? await axiosRequest.requestAxios<res<todo>>(
           "patch",
           `/todos/${id}`,
-          todoData,
+          todoData
         )
       : await axiosRequest.requestAxios<res<todo>>("post", "/todos", todoData);
     if (!response.error && props.handleTaskComplete) {
