@@ -1,6 +1,5 @@
-README
 
-> setup
+> **setup**
 
 2개의 터미널 실행이 필요합니다.
 
