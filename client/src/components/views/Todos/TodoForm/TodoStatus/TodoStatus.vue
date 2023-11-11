@@ -2,6 +2,7 @@
   <v-select
     class="selectStatus"
     v-model="inputData"
+    variant="solo"
     :items="['진행전', '진행중', '완료']"
     @blur="sendDataToParent"
   ></v-select>
