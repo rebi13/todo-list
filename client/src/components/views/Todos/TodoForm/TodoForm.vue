@@ -86,7 +86,6 @@ const inputChangeObj: InputChangeObjType = {
 
 const handleInputChange = (input: string, data: string) => {
   inputChangeObj[data](input);
-  console.log(input, data);
 };
 
 const submitForm = async (data: boolean, id: string) => {
@@ -114,7 +113,6 @@ const submitForm = async (data: boolean, id: string) => {
 };
 
 const checkValidation = () => {
-  console.log(title.value, content.value, createDate.value, status.value);
   if (!title.value) {
     alert("제목을 입력하세요.");
     return false;
