@@ -5,7 +5,7 @@
       <div class="ellipsis">{{ todo.content }}</div>
     </div>
     <div class="todoStatus">
-      <div>{{ todo.createDate }}</div>
+      <div class="match">{{ todo.createDate }}</div>
       <div>{{ todo.status }}</div>
     </div>
   </div>
