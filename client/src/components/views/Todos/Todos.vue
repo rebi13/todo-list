@@ -33,6 +33,7 @@ import AddButton from "./AddButton/AddButton.vue";
 import TodoForm from "./TodoForm/TodoForm.vue";
 import TodoCard from "./TodoCard/TodoCard.vue";
 import { todo } from "@/@types/index";
+import { TODO_STATUS } from "@/constants";
 
 const store = useStore();
 const todoList = computed(() => store.state.filteredTodos);
@@ -43,7 +44,7 @@ const todoFormData = ref({
   title: "",
   content: "",
   createDate: "",
-  status: "진행전",
+  status: TODO_STATUS.before.toString(),
   isEditMode: false,
 });
 

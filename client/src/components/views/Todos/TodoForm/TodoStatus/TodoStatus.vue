@@ -3,13 +3,14 @@
     class="selectStatus"
     v-model="inputData"
     variant="solo"
-    :items="['진행전', '진행중', '완료']"
+    :items="Object.values(TODO_STATUS)"
     @blur="sendDataToParent"
   ></v-select>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
+import { TODO_STATUS } from "@/constants";
 
 const props = defineProps({
   data: {
@@ -22,10 +23,10 @@ const props = defineProps({
   },
 });
 
-const inputData = ref(props.initialData || "진행전");
+const inputData = ref((props.initialData as TODO_STATUS) || TODO_STATUS.before);
 const emit = defineEmits(["input-changed"]);
 
 const sendDataToParent = () => {
-  emit("input-changed", inputData.value, props.data);
+  emit("input-changed", inputData.value.toString(), props.data);
 };
 </script>

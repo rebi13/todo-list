@@ -1,6 +1,7 @@
 import { createStore } from "vuex";
 import axiosRequest from "@/api/index";
 import { res, todo } from "@/@types/index";
+import { SELECT_STATUS } from "@/constants";
 
 // Vuex 스토어 타입 정의
 interface RootState {
@@ -31,7 +32,7 @@ const filterObj: FilterObjType = {
 };
 export default createStore<RootState>({
   state: {
-    defaultItem: "제목",
+    defaultItem: SELECT_STATUS.title,
     todos: [],
     filteredTodos: [],
     searchTerm: "",
